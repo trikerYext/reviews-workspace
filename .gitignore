@@ -1,2 +1,4 @@
-secrets
+.streamlit
 gitignore
+.DS_Store
+Pipfile
