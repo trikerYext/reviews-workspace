@@ -17,11 +17,11 @@ def run_query(query):
 
 if __name__ == "__main__":
     st.set_page_config(
-        page_title="Reviews Reporting",
-        page_icon="🎯"
+        page_title="Reviews Workspace",
+        page_icon="⭐"
     )
 
-    st.title("Reviews Reporting")
+    st.title("Reviews Workspace")
     conn = init_connection()
 
 

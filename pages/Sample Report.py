@@ -17,7 +17,7 @@ with st.expander("Show/Hide Report Inputs"):
         report_end_date = st.date_input("Report End Date")
         publishers = st.multiselect('Publishers', [
                                     'Google Business Profile', 'Facebook', 'Yelp', 'TripAdvisor', 'Apple App Store', 'Google Play Store', 'First Party'],
-                                    default = ['Google Business Profile', 'Facebook', 'Yelp', 'TripAdvisor', 'Apple App Store', 'Google Play Store', 'First Party'])
+                                    default=['Google Business Profile', 'Facebook', 'Yelp', 'TripAdvisor', 'Apple App Store', 'Google Play Store', 'First Party'])
 
         form_submitted = st.form_submit_button("Run Report")
 
@@ -79,23 +79,34 @@ if form_submitted:
     plt.show()
 
     # Hero Numbers
+    st.header("Overview")
 
-    average_rating_rounded = round(average_rating, 2)
-    st.metric(label='Average Rating', value=average_rating_rounded)
+    col1, col2 = st.columns(2, gap='medium')
+    col3, col4, col5 = st.columns(3)
 
-    response_rate_rounded = round(response_rate, 2)
-    st.metric(label='Response Rate', value=response_rate_rounded)
+    with col1:
+        reviews_count_formatted = f"{reviews_count:,}"
+        st.metric(label='Total Reviews', value=reviews_count_formatted)
 
-    reviews_count_formatted = f"{reviews_count:,}"
-    st.metric(label='Total Reviews', value=reviews_count_formatted)
+    with col2:
+        average_rating_rounded = round(average_rating, 2)
+        st.metric(label='Average Rating', value=average_rating_rounded)
 
-    avg_response_time_hours_rounded = round(avg_response_time_hours, 2)
-    st.metric(label='Average Response Time (Hours)',
-              value=avg_response_time_hours_rounded)
+    with col3:
+        reviews_without_response_formatted = f"{reviews_without_response_count:,}"
+        st.metric(label='Reviews Awaiting Response',
+                  value=reviews_without_response_formatted)
 
-    reviews_without_response_formatted = f"{reviews_without_response_count:,}"
-    st.metric(label='Reviews Awaiting Response',
-              value=reviews_without_response_formatted)
+    with col4:
+
+        response_rate_rounded = round(response_rate, 2)
+        st.metric(label='Response Rate', value=response_rate_rounded)
+
+    with col5:
+        avg_response_time_hours_rounded = round(avg_response_time_hours, 2)
+        st.metric(label='Average Response Time (Hours)',
+                  value=avg_response_time_hours_rounded)
 
     # Display Wordcloud
+    st.header("Wordcloud")
     st.pyplot()
