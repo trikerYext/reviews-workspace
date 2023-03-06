@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
+st.header("Form doesn't currently work. Defaults to Hard Rock Cafe reviews")
 
 with st.expander("Show/Hide Report Inputs"):
     with st.form("Form"):
