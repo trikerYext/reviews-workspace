@@ -22,17 +22,26 @@ conn = init_connection()
 
 ####################################################
 
-success_query = '''
-select b.business_id, b.name, count(distinct f.invocation_id) as "Successful Responses"
+query = '''
+with results as (
+select f.business_id,
+case 
+    when invoke_duration_milliseconds >= 10000 then 'Auto-Response'
+    when invoke_duration_milliseconds < 10000 then 'No Auto-Response'
+end as "Result"
 from "PROD_PLATFORM"."LOGS"."FUNCTION_INVOCATIONS" f
-join "PROD_PLATFORM"."PUBLIC"."BUSINESSES" b on b.business_id = f.business_id
-where function_name = 'reviewAutoRespond'
-and invoke_duration_milliseconds > 10000
-group by 1, 2
-limit 10;
+  where function_name = 'reviewAutoRespond'
+)
+select results.business_id, b.name, results."Result", count(results."Result")
+from results
+join "PROD_PLATFORM"."PUBLIC"."BUSINESSES" b on b.business_id = results.business_id
+group by 1,2,3
+order by 1;
 '''
 
-success_df = run_query(success_query)
+success_df = run_query(query)
+
+
 success_df
 
 
