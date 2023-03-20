@@ -91,6 +91,7 @@ if check_password():
                 Show a value statement\n
                 Address the sentiment of the review\n
                 Add a closing statement\n
+                Response in the same language as the review\n
                 ''')
 
             temperature = st.slider("Temperature", value=0.7)
@@ -125,8 +126,8 @@ if check_password():
         if uploaded_file is not None:
             df = pd.read_csv(uploaded_file)
 
-            if len(df.index) > 10:
-                st.write("To limit costs, this tool is currently limited to generating 10 responses. Please submit a file with less reviews")
+            if len(df.index) > 100:
+                st.write("To limit costs, this tool is currently limited to generating 100 responses. Please submit a file with less reviews")
 
             else:
                 with st.form("Bulk Form"):
