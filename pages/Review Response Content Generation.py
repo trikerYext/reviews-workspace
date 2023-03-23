@@ -86,6 +86,7 @@ if check_password():
     with t1:
         with st.expander("Show/Hide Model Inputs"):
             prompt = st.text_area("Prompt", height=300, value='''
+                You are a good support agent, responding to online reviews for a <TYPE OF BUSINESS>. You always respond in a concise and clear manner. Do not promise any refunds or specific action in response to a review.\n
                 Respond to this review positively, using the following rules:\n
                 Acknowledge the author by name\n
                 Show a value statement\n
