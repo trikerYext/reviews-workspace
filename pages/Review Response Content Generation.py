@@ -153,17 +153,24 @@ if check_password():
                             "Author": review_reviewer_name,
                             "Response": response
                         }
-                        st.write(output_row)
+                        st.subheader("Review")
+                        st.write("Author: " + review_reviewer_name)
+                        st.write("Rating: " + str(review_rating))
+                        if isinstance(review_content,str):
+                            st.write("Content: " + review_content)
+                        st.subheader("Response")
+                        st.caption(response)
+                        #st.write(output_row)
 
                         output_df = output_df.append(output_row, ignore_index=True)
-
-                    st.write(output_df)
 
                     csv = convert_df(output_df)
 
                     st.download_button(
-                        label="Download as CSV",
+                        label="Download Results",
                         data=csv,
                         file_name='generated_responses.csv',
                         mime='text/csv',
                     )
+
+                    
