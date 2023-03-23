@@ -84,6 +84,8 @@ if check_password():
 
 
     with t1:
+        st.warning('Before demoing, make sure to add in the Business Type to the Model Input below', icon="⚠️")
+
         with st.expander("Show/Hide Model Inputs"):
             prompt = st.text_area("Prompt", height=300, value='''
                 You are a good support agent, responding to online reviews for a <TYPE OF BUSINESS>. You always respond in a concise and clear manner. Do not promise any refunds or specific action in response to a review.\n
@@ -120,6 +122,8 @@ if check_password():
             st.write(response)
 
     with t3:
+
+        st.info('To generate responses in bulk, create an export from the Review Monitoring tab and upload the CSV here.', icon="ℹ️")
 
         uploaded_file = st.file_uploader(
             "Upload Review Export", help='You can download a file directly from the Review Monitoring or Review Response tabs in Storm and upload it here. Fields Required: Review, Rating, Author Name')
