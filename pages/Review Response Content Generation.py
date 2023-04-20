@@ -86,7 +86,7 @@ if check_password():
         st.warning(
             'Before demoing, make sure to modify the prompt', icon="⚠️")
 
-        with st.expander("Show/Hide Model Inputs"):
+        with st.expander("Show/Hide Model Inputs", expanded=True):
             yext_prompt = st.text_area("Yext Prompt", height=300, value='''You are a helpful assistant who suggests responses to online reviews for Awesome Business, an Accountant. When suggesting a response, follow these rules: \n
 - Do not offer any refunds, promises, commitments, or specific actions \n
 - Follow the additional instructions provided below
@@ -96,7 +96,7 @@ if check_password():
 3. Address any negative experiences had
 4. Add a closing statement
 5. Limit the response to 3 sentences
-6. If the review is less than 3 stars, offer the review a chance to reach out to Calvin@awesomebusiness.com for more help
+6. If the review is less than 3 stars, offer the reviewer a chance to reach out to Calvin@awesomebusiness.com for more help
 7. Respond as if you were the agent writing the response''')
 
             temperature = st.slider("Temperature", value=0.25)
